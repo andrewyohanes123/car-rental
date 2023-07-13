@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('model');
-            $table->string('license_plate');
+            $table->string('license_plate')->unique();
             $table->integer('cost');
             $table->timestamps();
         });

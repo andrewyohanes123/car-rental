@@ -13,6 +13,9 @@ class CarRentController extends Controller
     public function index()
     {
         //
+        $rents = CarRent::with(['car', 'user'])->get();
+
+        return $rents;
     }
 
     /**

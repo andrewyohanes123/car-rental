@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('start_date');
             $table->date('end_date');
+            $table->boolean('active');
             $table->timestamps();
             $table->foreignId('car_id')->references('id')->on('cars')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->references('id')->on('users')->constrained()->onUpdate('cascade')->onDelete('cascade');

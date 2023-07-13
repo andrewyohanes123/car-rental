@@ -29,6 +29,24 @@ Route::get('/', function () {
     ]);
 })->name('welcome');
 
+Route::get('/rents', function () {
+    return Inertia::render('Rents/List', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+})->name('rent-list');
+
+Route::get('/returns', function () {
+    return Inertia::render('ReturnCar/Search', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+})->name('rent-list');
+
 Route::get('/cars', function (Request $request) {
     $cars = Car::all();
     return $cars;
@@ -49,8 +67,17 @@ Route::group(['prefix' => '/dashboard', 'middleware' => ['auth', 'verified']], f
     // Route::get('/', function () {
     //     return Inertia::render('Dashboard');
     // });
+    Route::get('/users', function () {
+        return Inertia::render('Users/List');
+    });
     Route::get('/cars', function () {
         return Inertia::render('Cars/Layout');
+    });
+    Route::get('/rents', function () {
+        return Inertia::render('DashboardRents/List');
+    });
+    Route::get('/returns', function () {
+        return Inertia::render('Returns/List');
     });
     Route::post('/cars', [CarController::class, 'store'])->name('car.store');
 });

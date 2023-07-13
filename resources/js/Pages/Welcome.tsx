@@ -28,10 +28,17 @@ export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<
     <>
       <Head title="Selamat Datang" />
       <Box component={Center} className={classes.welcomeContainer} >
-        <Group p="sm" spacing="md">
-          <Box component={Link} href='register' >Daftar</Box>
-          <Box component={Link} href='login' >Login</Box>
-        </Group>
+        {auth.user === null ?
+          <Group p="lg" spacing="md">
+            <Box component={Link} href='register' >Daftar</Box>
+            <Box component={Link} href='login' >Login</Box>
+          </Group>
+          :
+          <Group p="lg">
+            <Text>{auth.user.name}</Text>
+            <Link method="post" href="logout">Logout</Link>
+          </Group>
+        }
         <Center className={classes.welcomeSplash}>
           <Title order={2} color="white">Selamat Datang</Title>
           <Text size="sm" color="dimmed">Silakan pilih mobil</Text>

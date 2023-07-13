@@ -15,6 +15,7 @@ export interface Car {
     license_plate: string;
     created_at: string;
     updated_at: string;
+    car_rent: CarRent | null;
 }
 
 export interface CarRent {
@@ -24,6 +25,20 @@ export interface CarRent {
     user_id: number;
     created_at: string;
     updated_at: string;
+    car: Car;
+    id: number;
+    user?: User | null;
+    active: boolean;
+}
+
+export interface CarReturn {
+    car_id: number;
+    id: number;
+    created_at: string;
+    updated_at: string;
+    car: Car;
+    car_rent: CarRent;
+    car_rent_id: number;
 }
 
 export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {

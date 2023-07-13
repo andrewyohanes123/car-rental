@@ -10,6 +10,12 @@ class CarReturn extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'car_id',
+        'car_rent_id',
+        'verified'
+    ];
+
     public function car_rent(): BelongsTo
     {
         return $this->belongsTo(CarRent::class);

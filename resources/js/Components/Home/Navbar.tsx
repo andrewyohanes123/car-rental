@@ -23,6 +23,7 @@ const Navbar:FC = (): ReactElement => {
       <Group spacing="sm" p="md">
         <Link className={classes.link} href="/">Daftar Mobil</Link>
         <Link className={classes.link} href="/rents">Daftar Sewa</Link>
+        <Link className={classes.link} href="/returns">Pengembalian Mobil</Link>
       </Group>
     </Center>
   )

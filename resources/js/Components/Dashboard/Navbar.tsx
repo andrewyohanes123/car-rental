@@ -1,7 +1,7 @@
 import { FC, ReactElement, useCallback } from "react";
 import { createStyles, Box, Center, NavLink, Navbar, ScrollArea, Title, UnstyledButton, getStylesRef, Text, } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
-import { IconUser, IconLogout, IconCar, IconCash } from "@tabler/icons-react";
+import { IconUser, IconLogout, IconCar, IconCash, IconTruckReturn } from "@tabler/icons-react";
 import { Link } from "@inertiajs/react";
 import { User } from "@/types";
 
@@ -160,7 +160,7 @@ const Sidebar: FC<props> = ({ user }): ReactElement => {
       </Center>
       <Navbar.Section component={ScrollArea} p="xs" grow>
         <Link
-          href={`/dashboard/user`}
+          href={`/dashboard/users`}
           className={classes.link}
         >
           <IconUser className={classes.linkIcon} stroke={1.5} />
@@ -179,6 +179,13 @@ const Sidebar: FC<props> = ({ user }): ReactElement => {
         >
           <IconCash className={classes.linkIcon} stroke={1.5} />
           <span>Sewa</span>
+        </Link>
+        <Link
+          href={`/dashboard/returns`}
+          className={classes.link}
+        >
+          <IconTruckReturn className={classes.linkIcon} stroke={1.5} />
+          <span>Pengembalian</span>
         </Link>
       </Navbar.Section>
       <Navbar.Section px="xs" py="md" className={classes.footer}>

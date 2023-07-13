@@ -11,9 +11,10 @@ interface props {
   car: Car;
   isAuthenticated: boolean;
   user: User | null;
+  withButton?: boolean;
 }
 
-const CarCard: FC<props> = ({ car, isAuthenticated, user }): ReactElement => {
+const CarCard: FC<props> = ({ car, isAuthenticated, user, withButton = true }): ReactElement => {
   const [rentModal, toggleRentModal] = useState<boolean>(false);
   const rent = useCallback(() => {
     if (isAuthenticated) {
@@ -33,8 +34,12 @@ const CarCard: FC<props> = ({ car, isAuthenticated, user }): ReactElement => {
         <Badge size="xl" color="blue" >{car.license_plate}</Badge>
       </Group>
       <Text color="teal" my="xs" fw="bold" >Rp. {car.cost}</Text>
-      <Divider my="xs" />
-      <Button onClick={rent} fullWidth>Sewa</Button>
+      {withButton &&
+        <>
+          <Divider my="xs" />
+          <Button onClick={rent} fullWidth>Sewa</Button>
+        </>
+      }
       {user !== null && <RentModal user={user} opened={rentModal} onClose={() => toggleRentModal(false)} car={car} />}
     </Card>
   )

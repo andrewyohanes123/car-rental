@@ -1,5 +1,5 @@
-import { useEffect, FormEventHandler } from 'react';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { useEffect, FormEventHandler, useCallback } from 'react';
+import { Head, router, useForm } from '@inertiajs/react';
 import { TextInput, Button, PasswordInput, Container, Checkbox, Divider } from '@mantine/core';
 
 export default function Login({ status, canResetPassword }: { status?: string, canResetPassword: boolean }) {
@@ -20,6 +20,10 @@ export default function Login({ status, canResetPassword }: { status?: string, c
 
         post(route('login'));
     };
+
+    const goToRegister = useCallback(() => {
+        router.visit('/register')
+    }, []);
 
     return (
         <>
@@ -63,7 +67,7 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                         Login
                     </Button>
                     <Divider label="Tidak punya akun?" my="md" labelPosition='center' />
-                    <Button mt="md" fullWidth color="blue" variant="outline" loading={processing}>
+                    <Button onClick={goToRegister} mt="md" fullWidth color="blue" variant="outline" loading={processing}>
                         Daftar
                     </Button>
                 </form>
